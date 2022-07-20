@@ -16,7 +16,7 @@ class UserService {
     return findUser;
   }
 
-  public static authVal = async (tokenData: string) => {
+  public static tokenVal = async (tokenData: string) => {
     const secret = await process.env.JWT_SECRET;
     const { data } = await verify(tokenData, secret as string) as JwtPayload;
     const { role } = data;

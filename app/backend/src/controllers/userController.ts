@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 // import { JwtPayload, verify } from 'jsonwebtoken';
 // import fs = require('fs');
-import authVal from '../middlewares/tokenValidation';
+import tokenVal from '../middlewares/tokenValidation';
 import token from '../middlewares/token';
 import UserService from '../services/userService';
 
@@ -30,8 +30,7 @@ class UserController {
   public validate = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const tokenData = req.headers.authorization;
-      const user = await authVal(tokenData as string);
-      // console.log(user);
+      const user = await tokenVal(tokenData as string);
       return res.status(200).json({ role: user.role });
     } catch (error) {
       next(error);
