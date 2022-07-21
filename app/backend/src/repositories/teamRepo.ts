@@ -11,4 +11,10 @@ export default class teamRepo implements ITeamModel {
 
     return teams;
   }
+
+  async getOne(id: number): Promise<entityTeam> {
+    const team = await this.model.findOne({ where: { id } });
+    if (!team) throw new Error('no team found');
+    return team;
+  }
 }

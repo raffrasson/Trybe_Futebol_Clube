@@ -10,5 +10,6 @@ const teamService = new TeamService(repository);
 const teamController = new TeamController(teamService);
 
 teamRouter.get('/', teamController.getAll);
+teamRouter.get('/:id', teamController.getOne);
 
 export default teamRouter;

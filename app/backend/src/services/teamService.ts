@@ -10,6 +10,12 @@ class TeamService implements ITeamService {
 
     return teams;
   }
+
+  async getOne(id: number): Promise<entityTeam> {
+    const team = await this.model.getOne(id);
+
+    return team;
+  }
 }
 
 export default TeamService;
