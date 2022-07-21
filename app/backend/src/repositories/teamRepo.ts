@@ -8,6 +8,7 @@ export default class teamRepo implements ITeamModel {
 
   async list(): Promise<entityTeam[]> {
     const teams = await this.model.findAll();
+
     return teams;
   }
 }

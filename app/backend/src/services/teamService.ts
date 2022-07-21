@@ -5,8 +5,8 @@ class TeamService implements ITeamService {
     this.model = model;
   }
 
-  list(): Promise<entityTeam[]> {
-    const teams = this.model.list();
+  async list(): Promise<entityTeam[]> {
+    const teams = await this.model.list();
 
     return teams;
   }
