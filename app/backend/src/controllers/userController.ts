@@ -29,7 +29,7 @@ class UserController {
 
   public validate = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const tokenData = req.headers.authorization;
+      const tokenData = await req.headers.authorization;
       const user = await tokenVal(tokenData as string);
       return res.status(200).json({ role: user.role });
     } catch (error) {

@@ -2,6 +2,10 @@ import * as express from 'express';
 import * as cors from 'cors';
 import userRouter from './routes/userRouter';
 import errorHandler from './middlewares/errorHandler';
+import teamRouter from './routes/teamRouter';
+// import TeamController from './controllers/teamController';
+// import TeamService from './services/teamService';
+// import TeamRepo from './repositories/teamRepo';
 
 class App {
   public app: express.Express;
@@ -26,6 +30,7 @@ class App {
     this.app.use(express.json());
     this.app.use(cors());
     this.app.use('/login', userRouter);
+    this.app.use('/teams', teamRouter);
     this.app.use(errorHandler);
   }
 

@@ -10,7 +10,9 @@ const errorHandler = (err: Error, req: Request, res: Response, _next: NextFuncti
   }
 
   if (err.message === 'Unauthorized') {
-    console.log('erro aqui');
+    return res.status(401).json({ message: 'Invalid or missing token' });
+  }
+  if (err.message === 'Incorrect token') {
     return res.status(401).json({ message: 'Invalid or missing token' });
   }
 };

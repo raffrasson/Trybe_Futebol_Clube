@@ -150,10 +150,11 @@ describe('tests route /login/validate', () => {
   })
 
 
-  it('is impossible to log in without a valid email', async () => {
+  it('is impossible to log in without a token', async () => {
     chaiHttpResponse = await chai
        .request(app)
-       .post('/login')
+       .get('/login/validate')
+       .set('authorization', '')
        .send(
         {
           email: "admin@admi.com",
