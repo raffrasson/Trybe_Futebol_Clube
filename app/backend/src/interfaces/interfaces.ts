@@ -1,13 +1,7 @@
-// import Team from '../database/models/team';
-
 export interface entityTeam {
   id: number;
   teamName: string;
 }
-
-// export interface iTeam {
-//   list(): Promise<Team[]>;
-// }
 
 export interface ITeamModel {
   list(): Promise<entityTeam[]>;
@@ -17,4 +11,23 @@ export interface ITeamModel {
 export interface ITeamService {
   list(): Promise<entityTeam[]>;
   getOne(id: number): Promise<entityTeam>;
+}
+
+export interface entityMatch {
+  id: number;
+  homeTeam: number;
+  homeTeamGoals: number;
+  awayTeam: number;
+  awayTeamGoals: number;
+  inProgress: boolean;
+}
+
+export interface IMatchModel {
+  list(): Promise<entityMatch[]>;
+  getOne(id: number): Promise<entityMatch>;
+}
+
+export interface IMatchService {
+  list(): Promise<entityMatch[]>;
+  getOne(id: number): Promise<entityMatch>;
 }
