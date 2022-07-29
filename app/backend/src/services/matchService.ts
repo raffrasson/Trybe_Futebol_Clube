@@ -16,6 +16,16 @@ class MatchService implements IMatchService {
 
     return match;
   }
+
+  async create(data: object): Promise<entityMatch> {
+    const match = await this.model.create(data);
+
+    return match;
+  }
+
+  async changeProgress(id: number): Promise<void> {
+    await this.model.changeProgress(id);
+  }
 }
 
 export default MatchService;

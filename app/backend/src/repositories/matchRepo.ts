@@ -2,7 +2,7 @@ import Team from '../database/models/team';
 import Match from '../database/models/match';
 import { IMatchModel, entityMatch } from '../interfaces/interfaces';
 
-export default class teamRepo implements IMatchModel {
+export default class matchRepo implements IMatchModel {
   constructor(private model = Match) {
     this.model = model;
   }
@@ -15,6 +15,15 @@ export default class teamRepo implements IMatchModel {
       ],
     });
     return matches;
+  }
+
+  async create(data: object): Promise<entityMatch> {
+    const match = await this.model.create(data);
+    return match;
+  }
+
+  async changeProgress(id: number): Promise<void> {
+    await this.model.update({ inProgress: false }, { where: { id } });
   }
 
   async getOne(id: number): Promise<entityMatch> {

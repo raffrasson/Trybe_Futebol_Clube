@@ -25,6 +25,26 @@ class MatchController {
       next(error);
     }
   };
+
+  public create = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      req.body.inProgress = true;
+      const data = await this.service.create(req.body);
+      return res.status(201).json(data);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public changeProgress = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      await this.service.changeProgress(Number(id));
+      return res.status(200).json({ message: 'Finished' });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default MatchController;

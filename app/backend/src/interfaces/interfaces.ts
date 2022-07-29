@@ -24,10 +24,14 @@ export interface entityMatch {
 
 export interface IMatchModel {
   list(): Promise<entityMatch[]>;
-  getOne(id: number): Promise<entityMatch>;
+  getOne(id: number): Promise<entityMatch>
+  create(data: object): Promise<entityMatch>;
+  changeProgress(id: number): Promise<void>;
 }
 
 export interface IMatchService {
   list(): Promise<entityMatch[]>;
   getOne(id: number): Promise<entityMatch>;
+  create(data: object): Promise<entityMatch>;
+  changeProgress(id: number): Promise<void>;
 }
