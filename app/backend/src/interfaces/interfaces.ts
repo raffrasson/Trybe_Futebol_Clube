@@ -27,6 +27,7 @@ export interface IMatchModel {
   getOne(id: number): Promise<entityMatch>
   create(data: object): Promise<entityMatch>;
   changeProgress(id: number): Promise<void>;
+  changeMatch(homeTeamGoals: number, awayTeamGoals: number, id: number): Promise<void>;
 }
 
 export interface IMatchService {
@@ -34,4 +35,5 @@ export interface IMatchService {
   getOne(id: number): Promise<entityMatch>;
   create(data: object): Promise<entityMatch>;
   changeProgress(id: number): Promise<void>;
+  changeMatch(homeTeamGoals: number, awayTeamGoals: number, id: number): Promise<void>;
 }

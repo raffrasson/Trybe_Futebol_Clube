@@ -15,5 +15,6 @@ matchRouter.get('/', matchController.getAll);
 matchRouter.post('/', matchValidation.validation, matchController.create);
 matchRouter.get('/:id', matchController.getOne);
 matchRouter.patch('/:id/finish', matchController.changeProgress);
+matchRouter.patch('/:id', matchController.changeMatch);
 
 export default matchRouter;

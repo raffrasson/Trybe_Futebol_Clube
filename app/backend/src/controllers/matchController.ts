@@ -45,6 +45,18 @@ class MatchController {
       next(error);
     }
   };
+
+  public changeMatch = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const { homeTeamGoals, awayTeamGoals } = await req.body;
+      console.log(awayTeamGoals);
+      await this.service.changeMatch(homeTeamGoals, awayTeamGoals, Number(id));
+      return res.status(200).json({ message: 'Finished' });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default MatchController;

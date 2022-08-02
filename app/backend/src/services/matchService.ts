@@ -26,6 +26,10 @@ class MatchService implements IMatchService {
   async changeProgress(id: number): Promise<void> {
     await this.model.changeProgress(id);
   }
+
+  async changeMatch(homeTeamGoals: number, awayTeamGoals: number, id: number): Promise<void> {
+    await this.model.changeMatch(homeTeamGoals, awayTeamGoals, id);
+  }
 }
 
 export default MatchService;

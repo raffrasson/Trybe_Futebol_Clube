@@ -26,6 +26,10 @@ export default class matchRepo implements IMatchModel {
     await this.model.update({ inProgress: false }, { where: { id } });
   }
 
+  async changeMatch(homeTeamGoals: number, awayTeamGoals: number, id: number): Promise<void> {
+    await this.model.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
+  }
+
   async getOne(id: number): Promise<entityMatch> {
     const match = await this.model.findOne({ where: { id } });
     if (!match) throw new Error('no match found');
