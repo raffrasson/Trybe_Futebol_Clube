@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import Team from '../database/models/team';
 import Match from '../database/models/match';
 import { IMatchModel, entityMatch } from '../interfaces/interfaces';
@@ -14,6 +15,23 @@ export default class matchRepo implements IMatchModel {
         { model: Team, as: 'teamAway', attributes: ['teamName' as string] },
       ],
     });
+    return matches;
+  }
+
+  async listFromTeam(id:number): Promise<entityMatch[]> {
+    const matches = await this.model.findAll(
+      { where: {
+        [Op.or]: [ // fonte: documentação do sequelize: https://sequelize.org/docs/v6/core-concepts/model-querying-basics/
+          { homeTeam: id },
+          { awayTeam: id },
+        ],
+      },
+      include: [
+        { model: Team, as: 'teamHome', attributes: ['teamName' as string] },
+        { model: Team, as: 'teamAway', attributes: ['teamName' as string] },
+      ],
+      },
+    );
     return matches;
   }
 

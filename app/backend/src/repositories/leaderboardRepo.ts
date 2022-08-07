@@ -1,0 +1,41 @@
+// import teamRepo from './teamRepo';
+// import matchRepo from './matchRepo';
+// import { ILeaderboardModel, entityLBTeam } from '../interfaces/interfaces';
+
+// export default class leaderboardRepo implements ILeaderboardModel {
+//   constructor(private match = Match, private team = teamRepo) {
+//     this.match = match;
+//     this.team = team;
+//   }
+
+//   async list(): Promise<entityLBTeam[]> {
+//     const teams = await teamRepo
+
+//     const matches = await this.model.findAll({
+//       include: [
+//         { model: Team, as: 'teamHome', attributes: ['teamName' as string] },
+//         { model: Team, as: 'teamAway', attributes: ['teamName' as string] },
+//       ],
+//     });
+//     return matches;
+//   }
+
+//   async create(data: object): Promise<entityMatch> {
+//     const match = await this.model.create(data);
+//     return match;
+//   }
+
+//   async changeProgress(id: number): Promise<void> {
+//     await this.model.update({ inProgress: false }, { where: { id } });
+//   }
+
+//   async changeMatch(homeTeamGoals: number, awayTeamGoals: number, id: number): Promise<void> {
+//     await this.model.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
+//   }
+
+//   async getOne(id: number): Promise<entityMatch> {
+//     const match = await this.model.findOne({ where: { id } });
+//     if (!match) throw new Error('no match found');
+//     return match;
+//   }
+// }

@@ -7,8 +7,14 @@ class MatchService implements IMatchService {
 
   async list(): Promise<entityMatch[]> {
     const matches = await this.model.list();
-    console.log(matches);
+
     return matches;
+  }
+
+  async listFromTeam(id: number): Promise<entityMatch[]> {
+    const matchesOfTeam = await this.model.listFromTeam(id);
+
+    return matchesOfTeam;
   }
 
   async getOne(id: number): Promise<entityMatch> {
