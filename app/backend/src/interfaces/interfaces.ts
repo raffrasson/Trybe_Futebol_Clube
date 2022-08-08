@@ -5,11 +5,13 @@ export interface entityTeam {
 
 export interface ITeamModel {
   list(): Promise<entityTeam[]>;
+
   getOne(id: number): Promise<entityTeam>;
 }
 
 export interface ITeamService {
   list(): Promise<entityTeam[]>;
+
   getOne(id: number): Promise<entityTeam>;
 }
 
@@ -55,8 +57,10 @@ export interface entityLBTeam {
 
 export interface ILeaderboardModel {
   list(): Promise<entityMatch[]>;
+
 }
 
 export interface ILeaderboardService {
   listFromTeam(): any;
+
 }

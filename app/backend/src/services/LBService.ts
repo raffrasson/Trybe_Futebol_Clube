@@ -12,7 +12,6 @@ class LBService implements ILeaderboardService {
   constructor(private teamService: TeamService, private matchService: MatchService) {
     this.teamService = teamService;
     this.matchService = matchService;
-    this.matchService = matchService;
   }
 
   async listFromTeam(): Promise<any> {
