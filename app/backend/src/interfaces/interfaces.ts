@@ -11,7 +11,7 @@ export interface ITeamModel {
 
 export interface ITeamService {
   list(): Promise<entityTeam[]>;
-
+  
   getOne(id: number): Promise<entityTeam>;
 }
 
@@ -62,5 +62,6 @@ export interface ILeaderboardModel {
 
 export interface ILeaderboardService {
   listFromTeam(): any;
+  listFromTeamHome(): any;
 
 }

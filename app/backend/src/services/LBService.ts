@@ -1,12 +1,12 @@
 import TeamService from './teamService';
 import MatchService from './matchService';
 import { ILeaderboardService } from '../interfaces/interfaces';
-import goalsFavorCalc from '../middlewares/calcs/goalsFavor';
-import gamesCalc from '../middlewares/calcs/gamesCalc';
-import totalVictories from '../middlewares/calcs/totalVictories';
-import totalDraws from '../middlewares/calcs/totalDraws';
-import totalLosses from '../middlewares/calcs/totalLosses';
-import goalsOwnCalc from '../middlewares/calcs/goalsOwn';
+import {goalsFavorCalc, goalsFavorCalcHome} from '../middlewares/calcs/goalsFavor';
+import {gamesCalc, gamesCalcHome} from '../middlewares/calcs/gamesCalc';
+import {totalVictories, totalVictoriesHome} from '../middlewares/calcs/totalVictories';
+import {totalDraws, totalDrawsHome} from '../middlewares/calcs/totalDraws';
+import {totalLosses, totalLossesHome} from '../middlewares/calcs/totalLosses';
+import {goalsOwnCalc, goalsOwnCalcHome} from '../middlewares/calcs/goalsOwn';
 
 class LBService implements ILeaderboardService {
   constructor(private teamService: TeamService, private matchService: MatchService) {
@@ -29,6 +29,26 @@ class LBService implements ILeaderboardService {
       efficiency: Math.round(((((await totalVictories(team.id)) * 3
           + (await totalDraws(team.id)))
            / ((await gamesCalc(team.id)) * 3)) * 100) * 100) / 100,
+    }));
+    return Promise.all(boardArray);
+  }
+
+  async listFromTeamHome(): Promise<any> {
+    const teams = await this.teamService.list();
+    const matches = await this.matchService.list()
+    const boardArray = teams.map(async (team) => ({
+      name: team.teamName,
+      totalPoints: (await totalVictoriesHome(team.id)) * 3 + (await totalDrawsHome(team.id)),
+      totalGames: await gamesCalcHome(team.id),
+      totalVictories: await totalVictoriesHome(team.id),
+      totalDraws: await totalDrawsHome(team.id),
+      totalLosses: await totalLossesHome(team.id),
+      goalsFavor: await goalsFavorCalcHome(team.id),
+      goalsOwn: await goalsOwnCalcHome(team.id),
+      goalsBalance: (await goalsFavorCalcHome(team.id)) - (await goalsOwnCalcHome(team.id)),
+      efficiency: Math.round(((((await totalVictoriesHome(team.id)) * 3
+          + (await totalDrawsHome(team.id)))
+           / ((await gamesCalcHome(team.id)) * 3)) * 100) * 100) / 100,
     }));
     return Promise.all(boardArray);
   }

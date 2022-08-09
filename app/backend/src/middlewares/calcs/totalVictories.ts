@@ -23,4 +23,24 @@ const totalVictories = async (id: number) => {
   return victories;
 };
 
-export default totalVictories;
+const totalVictoriesHome = async (id: number) => {
+  const matches: entityMatch[] = await Match.findAll({ where: {
+    [Op.or]: [ // fonte: documentação do sequelize: https://sequelize.org/docs/v6/core-concepts/model-querying-basics/
+      { homeTeam: id },
+    ],
+    [Op.and]: { inProgress: false },
+  },
+  });
+  let victories = 0;
+  await matches.forEach(async (match) => {
+    if (match.homeTeam === id && match.homeTeamGoals > match.awayTeamGoals) {
+      victories += 1;
+    }
+    if (match.awayTeam === id && match.awayTeamGoals > match.homeTeamGoals) {
+      victories += 1;
+    }
+  });
+  return victories;
+};
+
+export {totalVictories, totalVictoriesHome};

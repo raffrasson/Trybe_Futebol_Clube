@@ -12,5 +12,6 @@ const lbService = new LBService(new TeamService(new TeamRepo()), new MatchServic
 const lbController = new LBController(lbService);
 
 LBRouter.get('/', lbController.getAll);
+LBRouter.get('/home', lbController.getAllHome);
 
 export default LBRouter;

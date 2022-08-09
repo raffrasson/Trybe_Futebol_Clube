@@ -1,5 +1,5 @@
-const sorter = (arr: object[]) => {
-  arr.sort((a: any, b: any) => {
+const sorter = async (arr: object[]) => {
+  await arr.sort((a: any, b: any) => {
     if (a.totalPoints > b.totalPoints) return -1; if (a.totalPoints < b.totalPoints) return 1;
     if (a.totalVictories > b.totalVictories) return -1;
     if (a.totalVictories < b.totalVictories) return 1;
