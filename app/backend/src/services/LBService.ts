@@ -35,7 +35,6 @@ class LBService implements ILeaderboardService {
 
   async listFromTeamHome(): Promise<any> {
     const teams = await this.teamService.list();
-    const matches = await this.matchService.list()
     const boardArray = teams.map(async (team) => ({
       name: team.teamName,
       totalPoints: (await totalVictoriesHome(team.id)) * 3 + (await totalDrawsHome(team.id)),
